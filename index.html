@@ -8,14 +8,14 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap');
 
         :root {
-            --primary: #0056D2;          /* Azul corporativo fuerte */
+            --primary: #0056D2;
             --primary-hover: #0043A4;
-            --bg-color: #F0F6FF;         /* Fondo azul ultra claro */
-            --card-bg: #FFFFFF;          /* Tarjetas blancas */
-            --text-main: #1E293B;        /* Gris muy oscuro para texto */
+            --bg-color: #F0F6FF;
+            --card-bg: #FFFFFF;
+            --text-main: #1E293B;
             --text-muted: #64748B;
             --border-color: #E2E8F0;
-            --code-bg: #0F172A;          /* Azul oscuro casi negro para código */
+            --code-bg: #0F172A;
             --code-text: #E2E8F0;
             --shadow: 0 10px 40px -10px rgba(0, 86, 210, 0.15);
         }
@@ -39,7 +39,7 @@
             border-radius: 24px;
             box-shadow: var(--shadow);
             width: 100%;
-            max-width: 800px; /* Contenedor más ancho */
+            max-width: 800px;
             transition: all 0.3s ease;
         }
 
@@ -200,7 +200,6 @@
 <body>
 
 <div class="container">
-    <!-- PANTALLA DE REGISTRO -->
     <div id="pantalla-registro">
         <h1>Evaluación de Python</h1>
         <p class="subtitle">Laboratorio de Programación</p>
@@ -218,7 +217,6 @@
         <p id="error-registro" class="error-msg"></p>
     </div>
 
-    <!-- PANTALLA DEL EXAMEN -->
     <div id="pantalla-examen">
         <div class="progreso">
             <span id="indicador-progreso">Pregunta 1 de 15</span>
@@ -229,7 +227,6 @@
         <button id="btn-siguiente" class="btn-primary" onclick="siguientePregunta()" disabled>Siguiente Pregunta</button>
     </div>
 
-    <!-- PANTALLA DE RESULTADOS -->
     <div id="pantalla-resultados">
         <h2>Examen Finalizado</h2>
         <p class="subtitle" id="mensaje-final"></p>
@@ -242,7 +239,6 @@
 
 <script>
     const bancoTotal = [
-        // --- SECCIÓN: MANEJO DE ARCHIVOS ---
         { pregunta: "Completa para abrir un archivo en modo lectura (da error si no existe):\n\nwith open('datos.txt', '___') as f:", opciones: ["r", "w", "a", "read"], correcta: 0 },
         { pregunta: "Completa para abrir un archivo en modo escritura (sobrescribe si ya existe):\n\nwith open('mediciones.csv', '___') as f:", opciones: ["w", "write", "r", "a"], correcta: 0 },
         { pregunta: "Completa para abrir un archivo en modo añadir (no borra lo anterior):\n\nwith open('sistema.log', '___') as archivo:", opciones: ["a", "w", "add", "r"], correcta: 0 },
@@ -256,8 +252,6 @@
         { pregunta: "Completa el símbolo necesario para forzar un salto de línea al escribir:\n\nf.write('Sensor 1: 3.3V___')", opciones: ["\\n", "/n", "\\t", "<br>"], correcta: 0 },
         { pregunta: "Completa la asignación correcta al sumar a un contador:\n\ncontador _____ 1", opciones: ["+=", "++", "=+=", "+1"], correcta: 0 },
         { pregunta: "Completa para limitar un número flotante a 2 decimales dentro de un f-string:\n\nf'Promedio: {promedio_____}'", opciones: [":.2f", ":.2", "%2f", ".2"], correcta: 0 },
-
-        // --- SECCIÓN: MANEJO DE ERRORES (EXCEPCIONES) ---
         { pregunta: "Completa para iniciar un bloque que podría generar un error:\n\n____:\n    resistencia = voltaje / corriente", opciones: ["try", "except", "test", "check"], correcta: 0 },
         { pregunta: "Completa para atrapar una división por cero:\n\ntry:\n    y = z / x\nexcept ____________:\n    print('Error')", opciones: ["ZeroDivisionError", "MathError", "DivisionError", "ValueError"], correcta: 0 },
         { pregunta: "Completa para atrapar un error al sumar texto con números:\n\ntry:\n    y = 'Hola' + 5\nexcept ____________:\n    print('Tipos incompatibles')", opciones: ["TypeError", "ValueError", "FormatError", "StringError"], correcta: 0 },
@@ -272,8 +266,6 @@
         { pregunta: "Completa el bloque que se ejecuta SOLO si NO hubo errores:\n\ntry:\n    x = 10 / 2\n_______:\n    print('Cálculo exitoso')", opciones: ["else", "finally", "except", "then"], correcta: 0 },
         { pregunta: "Completa para saltar la iteración actual en un bucle si hay error:\n\nexcept ValueError:\n    ________", opciones: ["continue", "break", "pass", "next"], correcta: 0 },
         { pregunta: "Completa para salir de un bucle 'while True' si el dato se ingresó bien:\n\nwhile True:\n    try:\n        edad = int(input())\n        _______", opciones: ["break", "continue", "exit", "stop"], correcta: 0 },
-
-        // --- SECCIÓN: FUNCIONES ---
         { pregunta: "Completa la palabra reservada para iniciar la creación de una función:\n\n_____ calcular_potencia():", opciones: ["def", "function", "fun", "define"], correcta: 0 },
         { pregunta: "Completa el nombre de la función siguiendo la convención correcta:\n\ndef ____________():", opciones: ["saludar_estudiante", "Saludar_Estudiante", "saludarEstudiante", "saludar estudiante"], correcta: 0 },
         { pregunta: "Completa el símbolo obligatorio al final de los paréntesis de una definición:\n\ndef iniciar()__", opciones: [":", ";", "{", "->"], correcta: 0 },
