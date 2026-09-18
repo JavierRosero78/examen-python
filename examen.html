@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Práctico - Python</title>
+    <style>
+        :root {
+            --primary: #4F46E5;
+            --primary-hover: #4338CA;
+            --bg: #F3F4F6;
+            --card-bg: #FFFFFF;
+            --text: #1F2937;
+            --border: #E5E7EB;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+        h1, h2 {
+            text-align: center;
+            color: var(--primary);
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+        button {
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: var(--primary-hover);
+        }
+        button:disabled {
+            background-color: #9CA3AF;
+            cursor: not-allowed;
+        }
+        .error-msg {
+            color: #DC2626;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            text-align: center;
+            display: none;
+        }
+        .opcion-btn {
+            background-color: #F9FAFB;
+            color: var(--text);
+            border: 1px solid var(--border);
+            text-align: left;
+            margin-bottom: 0.5rem;
+            font-family: monospace;
+            font-size: 1.1rem;
+        }
+        .opcion-btn:hover {
+            background-color: #EEF2FF;
+            border-color: var(--primary);
+        }
+        .opcion-btn.seleccionada {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        pre {
+            background-color: #1F2937;
+            color: #F9FAFB;
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 1.1rem;
+        }
+        .progreso {
+            font-size: 0.9rem;
+            color: #6B7280;
+            text-align: right;
+            margin-bottom: 1rem;
+        }
+        #pantalla-examen, #pantalla-resultados {
+            display: none;
+        }
+        .nota-destacada {
+            font-size: 3rem;
+            font-weight: bold;
+            text-align: center;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Pantalla de Registro -->
+    <div id="pantalla-registro">
+        <h1>Evaluación de Python</h1>
+        <p style="text-align: center;">Por favor, ingresa tus datos para comenzar.</p>
+        
+        <div class="form-group">
+            <label for="nombre">Nombre Completo:</label>
+            <input type="text" id="nombre" placeholder="Ej. Juan Pérez" required>
+        </div>
+        <div class="form-group">
+            <label for="cedula">Cédula de Identidad:</label>
+            <input type="number" id="cedula" placeholder="Ej. 1234567890" required>
+        </div>
+        
+        <button onclick="validarIngreso()">Comenzar Examen</button>
+        <p id="error-registro" class="error-msg"></p>
+    </div>
+
+    <!-- Pantalla del Examen -->
+    <div id="pantalla-examen">
+        <div class="progreso" id="indicador-progreso">Pregunta 1 de 15</div>
+        <div id="contenedor-pregunta"></div>
+        <div id="contenedor-opciones" class="form-group"></div>
+        <button id="btn-siguiente" onclick="siguientePregunta()" disabled>Siguiente Pregunta</button>
+    </div>
+
+    <!-- Pantalla de Resultados -->
+    <div id="pantalla-resultados">
+        <h2>Examen Finalizado</h2>
+        <p style="text-align: center;" id="mensaje-final"></p>
+        <div class="nota-destacada" id="nota-final"></div>
+        <p style="text-align: center;">El resultado ha sido guardado exitosamente.</p>
+        <button onclick="location.reload()" style="margin-top: 1rem; background-color: #4B5563;">Volver al Inicio</button>
+    </div>
+</div>
+
+<script>
+    // Configuración del banco de preguntas
+    const bancoTotal = [
+        {
+            pregunta: "Completa para abrir un archivo en modo lectura (que da error si no existe):\n\nwith open('datos.txt', '___') as f:",
+            opciones: ["r", "w", "a", "read"],
+            correcta: 0
+        },
+        {
+            pregunta: "Completa el código para atrapar el error si el usuario ingresa texto en lugar de números:\n\ntry:\n    edad = int(input())\nexcept ____________:\n    print('Error')",
+            opciones: ["ValueError", "TypeError", "NameError", "ZeroDivisionError"],
+            correcta: 0
+        },
+        {
+            pregunta: "Completa la función que devuelve dos valores empaquetados:\n\ndef calcular(v, i):\n    p = v * i\n    _______ v, p",
+            opciones: ["return", "print", "yield", "output"],
+            correcta: 0
+        },
+        {
+            pregunta: "Completa para iterar línea por línea sobre un archivo:\n\nwith open('mediciones.csv', 'r') as f:\n    for linea in ________:\n        print(linea)",
+            opciones: ["f", "f.readlines()", "f.read()", "f.line()"],
+            correcta: 0
+        },
+        {
+            pregunta: "Completa para capturar un error al intentar acceder a una posición que no existe en una lista:\n\nlista = [1, 2]\ntry:\n    dato = lista[7]\nexcept ____________:",
+            opciones: ["IndexError", "KeyError", "ValueError", "AttributeError"],
+            correcta: 0
+        },
+        {
+            pregunta: "Completa el código para escribir una línea en un archivo:\n\nwith open('log.txt', 'w') as f:\n    ____________('Inicio del sistema\\n')",
+            opciones: ["f.write", "f.writelines", "f.append", "f.add"],
+            correcta: 0
+        }
+        // NOTA: Añade las demás preguntas aquí hasta llegar a 40.
+        // Asegúrate de usar el índice de la opción correcta (0, 1, 2 o 3) en 'correcta'.
+    ];
+
+    let preguntasExamen = [];
+    let indiceActual = 0;
+    let puntaje = 0;
+    let respuestaSeleccionada = null;
+    let estudianteActual = "";
+
+    // Utilidades
+    function mezclarArreglo(arreglo) {
+        let mezclado = [...arreglo];
+        for (let i = mezclado.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [mezclado[i], mezclado[j]] = [mezclado[j], mezclado[i]];
+        }
+        return mezclado;
+    }
+
+    // Lógica de inicio y validación
+    function validarIngreso() {
+        const nombre = document.getElementById("nombre").value.trim();
+        const cedula = document.getElementById("cedula").value.trim();
+        const errorElement = document.getElementById("error-registro");
+
+        if (!nombre || !cedula) {
+            errorElement.innerText = "Por favor, completa ambos campos.";
+            errorElement.style.display = "block";
+            return;
+        }
+
+        // Simular base de datos con localStorage
+        let registros = JSON.parse(localStorage.getItem("registroExamenPython")) || {};
+
+        if (registros[cedula]) {
+            errorElement.innerText = `Acceso denegado: Ya presentaste el examen. Tu nota fue: ${registros[cedula].nota}`;
+            errorElement.style.display = "block";
+            return;
+        }
+
+        estudianteActual = cedula;
+        iniciarExamen();
+    }
+
+    function iniciarExamen() {
+        // Seleccionar 15 preguntas al azar del banco
+        preguntasExamen = mezclarArreglo(bancoTotal).slice(0, 15);
+        
+        document.getElementById("pantalla-registro").style.display = "none";
+        document.getElementById("pantalla-examen").style.display = "block";
+        
+        cargarPregunta();
+    }
+
+    function cargarPregunta() {
+        respuestaSeleccionada = null;
+        document.getElementById("btn-siguiente").disabled = true;
+        
+        const q = preguntasExamen[indiceActual];
+        document.getElementById("indicador-progreso").innerText = `Pregunta ${indiceActual + 1} de 15`;
+        
+        // Renderizar pregunta
+        document.getElementById("contenedor-pregunta").innerHTML = `<pre>${q.pregunta}</pre>`;
+        
+        // Renderizar opciones mezcladas manteniendo el rastro de la correcta
+        const opcionesConIndice = q.opciones.map((texto, i) => ({ texto, esCorrecta: i === q.correcta }));
+        const opcionesMezcladas = mezclarArreglo(opcionesConIndice);
+        
+        const contenedorOpciones = document.getElementById("contenedor-opciones");
+        contenedorOpciones.innerHTML = "";
+        
+        opcionesMezcladas.forEach((opcion, i) => {
+            const btn = document.createElement("button");
+            btn.className = "opcion-btn";
+            btn.innerText = opcion.texto;
+            btn.onclick = () => seleccionarOpcion(btn, opcion.esCorrecta);
+            contenedorOpciones.appendChild(btn);
+        });
+    }
+
+    function seleccionarOpcion(botonClickeado, esCorrecta) {
+        respuestaSeleccionada = esCorrecta;
+        
+        // Quitar clase seleccionada a todos
+        const botones = document.querySelectorAll(".opcion-btn");
+        botones.forEach(btn => btn.classList.remove("seleccionada"));
+        
+        // Añadir clase al seleccionado
+        botonClickeado.classList.add("seleccionada");
+        document.getElementById("btn-siguiente").disabled = false;
+    }
+
+    function siguientePregunta() {
+        if (respuestaSeleccionada) {
+            puntaje++;
+        }
+        
+        indiceActual++;
+        
+        if (indiceActual < 15 && indiceActual < preguntasExamen.length) {
+            cargarPregunta();
+            if (indiceActual === 14 || indiceActual === preguntasExamen.length - 1) {
+                document.getElementById("btn-siguiente").innerText = "Finalizar Examen";
+            }
+        } else {
+            mostrarResultados();
+        }
+    }
+
+    function mostrarResultados() {
+        document.getElementById("pantalla-examen").style.display = "none";
+        document.getElementById("pantalla-resultados").style.display = "block";
+        
+        // Calcular nota (Escala de 1.0 a 5.0 basada en 15 preguntas)
+        let totalPreguntas = Math.min(15, preguntasExamen.length);
+        let notaCalculada = (puntaje / totalPreguntas) * 5.0;
+        let notaFinal = Math.max(1.0, notaCalculada).toFixed(1);
+        
+        const nombre = document.getElementById("nombre").value;
+        document.getElementById("mensaje-final").innerHTML = `Gracias por completar la prueba, <strong>${nombre}</strong>.<br>Acertaste ${puntaje} de ${totalPreguntas} preguntas.`;
+        document.getElementById("nota-final").innerText = notaFinal;
+
+        // Guardar en localStorage para bloquear futuros intentos locales
+        let registros = JSON.parse(localStorage.getItem("registroExamenPython")) || {};
+        registros[estudianteActual] = {
+            nombre: nombre,
+            nota: notaFinal,
+            fecha: new Date().toLocaleString()
+        };
+        localStorage.setItem("registroExamenPython", JSON.stringify(registros));
+
+        // =================================================================
+        // INICIO DEL ENVÍO A GOOGLE SHEETS
+        // =================================================================
+        let datosExamen = {
+            nombre: nombre,
+            cedula: estudianteActual,
+            nota: notaFinal,
+            fecha: new Date().toLocaleString()
+        };
+
+        // Reemplaza ESTA URL por la que te generó Google Apps Script
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzt3GIu4iYKufot_hk7qx235g9OWRWBLe3C8yOQlJVYtyAK8fkRl1TCtrXx83-8C0Lu/exec";
+
+        fetch(GOOGLE_SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors", // Ayuda a prevenir errores de seguridad en el navegador
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(datosExamen)
+        })
+        .then(response => console.log("Nota enviada a Google Sheets correctamente"))
+        .catch(error => console.error("Error al enviar la nota:", error));
+        // =================================================================
+        // FIN DEL ENVÍO A GOOGLE SHEETS
+        // =================================================================
+    }
+</script>
+
+</body>
+</html>
