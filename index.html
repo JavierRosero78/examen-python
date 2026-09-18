@@ -5,196 +5,288 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Examen Práctico - Python</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap');
+
         :root {
-            --primary: #4F46E5;
-            --primary-hover: #4338CA;
-            --bg: #F3F4F6;
-            --card-bg: #FFFFFF;
-            --text: #1F2937;
-            --border: #E5E7EB;
+            --primary: #0056D2;          /* Azul corporativo fuerte */
+            --primary-hover: #0043A4;
+            --bg-color: #F0F6FF;         /* Fondo azul ultra claro */
+            --card-bg: #FFFFFF;          /* Tarjetas blancas */
+            --text-main: #1E293B;        /* Gris muy oscuro para texto */
+            --text-muted: #64748B;
+            --border-color: #E2E8F0;
+            --code-bg: #0F172A;          /* Azul oscuro casi negro para código */
+            --code-text: #E2E8F0;
+            --shadow: 0 10px 40px -10px rgba(0, 86, 210, 0.15);
         }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
+            padding: 2rem 1rem;
+            box-sizing: border-box;
         }
+
         .container {
             background-color: var(--card-bg);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
             width: 100%;
-            max-width: 600px;
+            max-width: 800px; /* Contenedor más ancho */
+            transition: all 0.3s ease;
         }
-        h1, h2 {
+
+        h1 {
             text-align: center;
             color: var(--primary);
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
         }
+
+        h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+        }
+
+        p.subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+        }
+
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
         }
+
         label {
             display: block;
             margin-bottom: 0.5rem;
-            font-weight: bold;
+            font-weight: 600;
+            color: var(--text-main);
+            font-size: 1.1rem;
         }
+
         input[type="text"], input[type="number"] {
             width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--border);
-            border-radius: 6px;
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
             box-sizing: border-box;
-            font-size: 1rem;
+            font-size: 1.1rem;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.2s;
         }
-        button {
+
+        input[type="text"]:focus, input[type="number"]:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        button.btn-primary {
             width: 100%;
             background-color: var(--primary);
             color: white;
-            padding: 0.75rem;
+            padding: 1.2rem;
             border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: bold;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.2s;
+            transition: background-color 0.2s, transform 0.1s;
+            margin-top: 1rem;
         }
-        button:hover {
+
+        button.btn-primary:hover {
             background-color: var(--primary-hover);
         }
-        button:disabled {
-            background-color: #9CA3AF;
-            cursor: not-allowed;
+        
+        button.btn-primary:active {
+            transform: scale(0.98);
         }
+
+        button.btn-primary:disabled {
+            background-color: #CBD5E1;
+            cursor: not-allowed;
+            transform: none;
+        }
+
         .error-msg {
             color: #DC2626;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
+            font-size: 1rem;
+            margin-top: 1rem;
             text-align: center;
+            font-weight: 600;
             display: none;
         }
+
+        pre {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 1.8rem;
+            border-radius: 16px;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.15rem;
+            line-height: 1.6;
+            border-left: 6px solid var(--primary);
+            margin-bottom: 2rem;
+        }
+
         .opcion-btn {
-            background-color: #F9FAFB;
-            color: var(--text);
-            border: 1px solid var(--border);
+            width: 100%;
+            background-color: #F8FAFC;
+            color: var(--text-main);
+            border: 2px solid var(--border-color);
+            padding: 1.2rem;
+            border-radius: 12px;
             text-align: left;
-            margin-bottom: 0.5rem;
-            font-family: monospace;
+            margin-bottom: 1rem;
+            font-family: 'JetBrains Mono', monospace;
             font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
+
         .opcion-btn:hover {
-            background-color: #EEF2FF;
-            border-color: var(--primary);
+            background-color: #EFF6FF;
+            border-color: #93C5FD;
+            transform: translateY(-2px);
         }
+
         .opcion-btn.seleccionada {
             background-color: var(--primary);
             color: white;
             border-color: var(--primary);
+            box-shadow: 0 4px 15px rgba(0, 86, 210, 0.3);
+            transform: translateY(-2px);
         }
-        pre {
-            background-color: #1F2937;
-            color: #F9FAFB;
-            padding: 1rem;
-            border-radius: 6px;
-            overflow-x: auto;
-            font-size: 1.1rem;
-        }
+
         .progreso {
-            font-size: 0.9rem;
-            color: #6B7280;
-            text-align: right;
-            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border-color);
         }
-        #pantalla-examen, #pantalla-resultados {
-            display: none;
-        }
+
         .nota-destacada {
-            font-size: 3rem;
-            font-weight: bold;
+            font-size: 5rem;
+            font-weight: 800;
             text-align: center;
             color: var(--primary);
-            margin: 1rem 0;
+            margin: 2rem 0;
+            text-shadow: 0 4px 20px rgba(0,86,210,0.1);
+        }
+
+        #pantalla-examen, #pantalla-resultados {
+            display: none;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- Pantalla de Registro -->
+    <!-- PANTALLA DE REGISTRO -->
     <div id="pantalla-registro">
         <h1>Evaluación de Python</h1>
-        <p style="text-align: center;">Por favor, ingresa tus datos para comenzar.</p>
+        <p class="subtitle">Laboratorio de Programación</p>
         
         <div class="form-group">
-            <label for="nombre">Nombre Completo:</label>
-            <input type="text" id="nombre" placeholder="Ej. Juan Pérez" required>
+            <label for="nombre">Nombre Completo</label>
+            <input type="text" id="nombre" placeholder="Ej. Juan Pérez" autocomplete="off" required>
         </div>
         <div class="form-group">
-            <label for="cedula">Cédula de Identidad:</label>
-            <input type="number" id="cedula" placeholder="Ej. 1234567890" required>
+            <label for="cedula">Documento de Identidad</label>
+            <input type="number" id="cedula" placeholder="Ej. 1085000000" autocomplete="off" required>
         </div>
         
-        <button onclick="validarIngreso()">Comenzar Examen</button>
+        <button class="btn-primary" onclick="validarIngreso()">Comenzar Examen</button>
         <p id="error-registro" class="error-msg"></p>
     </div>
 
-    <!-- Pantalla del Examen -->
+    <!-- PANTALLA DEL EXAMEN -->
     <div id="pantalla-examen">
-        <div class="progreso" id="indicador-progreso">Pregunta 1 de 15</div>
+        <div class="progreso">
+            <span id="indicador-progreso">Pregunta 1 de 15</span>
+            <span style="color: var(--primary);">Práctica Continua</span>
+        </div>
         <div id="contenedor-pregunta"></div>
         <div id="contenedor-opciones" class="form-group"></div>
-        <button id="btn-siguiente" onclick="siguientePregunta()" disabled>Siguiente Pregunta</button>
+        <button id="btn-siguiente" class="btn-primary" onclick="siguientePregunta()" disabled>Siguiente Pregunta</button>
     </div>
 
-    <!-- Pantalla de Resultados -->
+    <!-- PANTALLA DE RESULTADOS -->
     <div id="pantalla-resultados">
         <h2>Examen Finalizado</h2>
-        <p style="text-align: center;" id="mensaje-final"></p>
+        <p class="subtitle" id="mensaje-final"></p>
         <div class="nota-destacada" id="nota-final"></div>
-        <p style="text-align: center;">El resultado ha sido guardado exitosamente.</p>
-        <button onclick="location.reload()" style="margin-top: 1rem; background-color: #4B5563;">Volver al Inicio</button>
+        <p style="text-align: center; color: var(--text-muted); font-size: 1.1rem;">
+            Tu calificación ha sido registrada en el sistema del profesor exitosamente.
+        </p>
     </div>
 </div>
 
 <script>
-    // Configuración del banco de preguntas
     const bancoTotal = [
-        {
-            pregunta: "Completa para abrir un archivo en modo lectura (que da error si no existe):\n\nwith open('datos.txt', '___') as f:",
-            opciones: ["r", "w", "a", "read"],
-            correcta: 0
-        },
-        {
-            pregunta: "Completa el código para atrapar el error si el usuario ingresa texto en lugar de números:\n\ntry:\n    edad = int(input())\nexcept ____________:\n    print('Error')",
-            opciones: ["ValueError", "TypeError", "NameError", "ZeroDivisionError"],
-            correcta: 0
-        },
-        {
-            pregunta: "Completa la función que devuelve dos valores empaquetados:\n\ndef calcular(v, i):\n    p = v * i\n    _______ v, p",
-            opciones: ["return", "print", "yield", "output"],
-            correcta: 0
-        },
-        {
-            pregunta: "Completa para iterar línea por línea sobre un archivo:\n\nwith open('mediciones.csv', 'r') as f:\n    for linea in ________:\n        print(linea)",
-            opciones: ["f", "f.readlines()", "f.read()", "f.line()"],
-            correcta: 0
-        },
-        {
-            pregunta: "Completa para capturar un error al intentar acceder a una posición que no existe en una lista:\n\nlista = [1, 2]\ntry:\n    dato = lista[7]\nexcept ____________:",
-            opciones: ["IndexError", "KeyError", "ValueError", "AttributeError"],
-            correcta: 0
-        },
-        {
-            pregunta: "Completa el código para escribir una línea en un archivo:\n\nwith open('log.txt', 'w') as f:\n    ____________('Inicio del sistema\\n')",
-            opciones: ["f.write", "f.writelines", "f.append", "f.add"],
-            correcta: 0
-        }
-        // NOTA: Añade las demás preguntas aquí hasta llegar a 40.
-        // Asegúrate de usar el índice de la opción correcta (0, 1, 2 o 3) en 'correcta'.
+        // --- SECCIÓN: MANEJO DE ARCHIVOS ---
+        { pregunta: "Completa para abrir un archivo en modo lectura (da error si no existe):\n\nwith open('datos.txt', '___') as f:", opciones: ["r", "w", "a", "read"], correcta: 0 },
+        { pregunta: "Completa para abrir un archivo en modo escritura (sobrescribe si ya existe):\n\nwith open('mediciones.csv', '___') as f:", opciones: ["w", "write", "r", "a"], correcta: 0 },
+        { pregunta: "Completa para abrir un archivo en modo añadir (no borra lo anterior):\n\nwith open('sistema.log', '___') as archivo:", opciones: ["a", "w", "add", "r"], correcta: 0 },
+        { pregunta: "Completa para escribir una sola línea de texto en un archivo:\n\nwith open('log.txt', 'w') as f:\n    f._______('Inicio del sistema\\n')", opciones: ["write", "writelines", "append", "add"], correcta: 0 },
+        { pregunta: "Completa para escribir una lista entera de cadenas en un archivo:\n\ndatos = ['12.5\\n', '24.0\\n']\nwith open('datos.csv', 'w') as f:\n    f._________(datos)", opciones: ["writelines", "write", "write_all", "append"], correcta: 0 },
+        { pregunta: "Completa para leer todas las líneas de un archivo y guardarlas en una lista:\n\nwith open('mediciones.csv', 'r') as f:\n    contenido = f.________()", opciones: ["readlines", "read", "readline", "readlines()"], correcta: 0 },
+        { pregunta: "Completa para iterar directamente línea por línea sobre un archivo abierto:\n\nwith open('mediciones.csv', 'r') as f:\n    for linea ____ f:\n        print(linea)", opciones: ["in", "on", "from", "inside"], correcta: 0 },
+        { pregunta: "Completa para eliminar los espacios en blanco y saltos de línea al leer:\n\nfor linea in f:\n    print(linea._______())", opciones: ["strip()", "clean()", "remove()", "delete()"], correcta: 0 },
+        { pregunta: "Completa la estructura del gestor de contexto (abre y cierra seguro el archivo):\n\n________('archivo.txt', 'r') as f:", opciones: ["with open", "open with", "try open", "file open"], correcta: 0 },
+        { pregunta: "Completa para especificar la codificación al abrir un archivo:\n\nwith open('med.csv', 'w', _________) as f:", opciones: ["encoding='utf-8'", "charset='utf-8'", "code='utf-8'", "format='utf-8'"], correcta: 0 },
+        { pregunta: "Completa el símbolo necesario para forzar un salto de línea al escribir:\n\nf.write('Sensor 1: 3.3V___')", opciones: ["\\n", "/n", "\\t", "<br>"], correcta: 0 },
+        { pregunta: "Completa la asignación correcta al sumar a un contador:\n\ncontador _____ 1", opciones: ["+=", "++", "=+=", "+1"], correcta: 0 },
+        { pregunta: "Completa para limitar un número flotante a 2 decimales dentro de un f-string:\n\nf'Promedio: {promedio_____}'", opciones: [":.2f", ":.2", "%2f", ".2"], correcta: 0 },
+
+        // --- SECCIÓN: MANEJO DE ERRORES (EXCEPCIONES) ---
+        { pregunta: "Completa para iniciar un bloque que podría generar un error:\n\n____:\n    resistencia = voltaje / corriente", opciones: ["try", "except", "test", "check"], correcta: 0 },
+        { pregunta: "Completa para atrapar una división por cero:\n\ntry:\n    y = z / x\nexcept ____________:\n    print('Error')", opciones: ["ZeroDivisionError", "MathError", "DivisionError", "ValueError"], correcta: 0 },
+        { pregunta: "Completa para atrapar un error al sumar texto con números:\n\ntry:\n    y = 'Hola' + 5\nexcept ____________:\n    print('Tipos incompatibles')", opciones: ["TypeError", "ValueError", "FormatError", "StringError"], correcta: 0 },
+        { pregunta: "Completa para atrapar una conversión fallida (ej. texto a número):\n\ntry:\n    edad = int('quince')\nexcept ____________:", opciones: ["ValueError", "TypeError", "ConvertError", "CastError"], correcta: 0 },
+        { pregunta: "Completa para atrapar el error de asignación (variable no declarada):\n\ntry:\n    resultado = corriente * voltaje\nexcept ____________:", opciones: ["NameError", "VariableError", "KeyError", "IndexError"], correcta: 0 },
+        { pregunta: "Completa para atrapar un acceso a una posición inexistente en una lista:\n\ntry:\n    dato = lista[7]\nexcept ____________:", opciones: ["IndexError", "RangeError", "KeyError", "ListError"], correcta: 0 },
+        { pregunta: "Completa para atrapar la búsqueda de una llave que no existe en un diccionario:\n\ntry:\n    pot = circuito['resistencia_falsa']\nexcept ____________:", opciones: ["KeyError", "IndexError", "DictError", "ValueError"], correcta: 0 },
+        { pregunta: "Completa para atrapar el error si la ruta de un archivo no existe:\n\ntry:\n    with open('inexistente.txt', 'r'):\nexcept ____________:", opciones: ["FileNotFoundError", "IOError", "FileError", "OpenError"], correcta: 0 },
+        { pregunta: "Completa para atrapar el uso de un método que el objeto no tiene:\n\ntry:\n    frecuencia.values()\nexcept ____________:", opciones: ["AttributeError", "MethodError", "FunctionError", "TypeError"], correcta: 0 },
+        { pregunta: "Completa para atrapar un error y guardarlo en una variable 'e':\n\nexcept ValueError ______:\n    print(f'Detalle: {e}')", opciones: ["as e", "in e", "to e", "var e"], correcta: 0 },
+        { pregunta: "Completa el bloque que se ejecuta SIEMPRE, haya error o no:\n\nexcept TypeError:\n    print('Error')\n_______:\n    print('Fin del programa')", opciones: ["finally", "else", "always", "except"], correcta: 0 },
+        { pregunta: "Completa el bloque que se ejecuta SOLO si NO hubo errores:\n\ntry:\n    x = 10 / 2\n_______:\n    print('Cálculo exitoso')", opciones: ["else", "finally", "except", "then"], correcta: 0 },
+        { pregunta: "Completa para saltar la iteración actual en un bucle si hay error:\n\nexcept ValueError:\n    ________", opciones: ["continue", "break", "pass", "next"], correcta: 0 },
+        { pregunta: "Completa para salir de un bucle 'while True' si el dato se ingresó bien:\n\nwhile True:\n    try:\n        edad = int(input())\n        _______", opciones: ["break", "continue", "exit", "stop"], correcta: 0 },
+
+        // --- SECCIÓN: FUNCIONES ---
+        { pregunta: "Completa la palabra reservada para iniciar la creación de una función:\n\n_____ calcular_potencia():", opciones: ["def", "function", "fun", "define"], correcta: 0 },
+        { pregunta: "Completa el nombre de la función siguiendo la convención correcta:\n\ndef ____________():", opciones: ["saludar_estudiante", "Saludar_Estudiante", "saludarEstudiante", "saludar estudiante"], correcta: 0 },
+        { pregunta: "Completa el símbolo obligatorio al final de los paréntesis de una definición:\n\ndef iniciar()__", opciones: [":", ";", "{", "->"], correcta: 0 },
+        { pregunta: "¿Qué define qué bloque de código pertenece al interior de una función en Python?", opciones: ["La indentación (espacios)", "Los paréntesis", "Las llaves {}", "Los corchetes []"], correcta: 0 },
+        { pregunta: "Completa para llamar (ejecutar) correctamente a la función:\n\ndef iniciar():\n    print('Hola')\n\n________", opciones: ["iniciar()", "call iniciar", "run iniciar()", "iniciar"], correcta: 0 },
+        { pregunta: "Completa para usar un argumento por defecto:\n\ndef calcular(voltaje, _________):\n    pass", opciones: ["frecuencia=60", "frecuencia", "frecuencia: 60", "frecuencia==60"], correcta: 0 },
+        { pregunta: "Completa el uso de un Keyword Argument (asignación explícita por nombre):\n\ncalcular_potencia(_________=5, voltaje=220)", opciones: ["corriente", "int corriente", "val corriente", "i"], correcta: 0 },
+        { pregunta: "Completa para finalizar la función y devolver un dato procesado:\n\n________ resultado", opciones: ["return", "output", "yield", "send"], correcta: 0 },
+        { pregunta: "Completa la sintaxis para devolver MÚLTIPLES valores empaquetados:\n\nreturn _________", opciones: ["voltaje, potencia", "voltaje and potencia", "[voltaje, potencia]", "voltaje; potencia"], correcta: 0 },
+        { pregunta: "Completa la sintaxis para desempaquetar múltiples retornos respetando el orden:\n\n________ = analizar_circuito(10, 2)", opciones: ["v_result, p_result", "v_result; p_result", "[v, p]", "v_result and p_result"], correcta: 0 },
+        { pregunta: "¿Cuál es el ciclo de vida de una variable LOCAL (creada dentro de una función)?", opciones: ["Deja de existir cuando la función termina.", "Existe durante toda la ejecución del script.", "No se puede borrar jamás.", "Sobrescribe todas las demás variables."], correcta: 0 },
+        { pregunta: "¿Cuál es la característica principal de una variable GLOBAL (creada fuera de las funciones)?", opciones: ["Puede ser leída por cualquier función del programa.", "El programa principal NO puede acceder a ella.", "Provoca un NameError siempre.", "Requiere usar with open para leerla."], correcta: 0 },
+        { pregunta: "Completa con el caracter correcto para indicar que se evalúa un f-string:\n\nprint(__'Cálculo exitoso: {resistencia}')", opciones: ["f", "format", "s", "str"], correcta: 0 }
     ];
 
     let preguntasExamen = [];
@@ -203,7 +295,6 @@
     let respuestaSeleccionada = null;
     let estudianteActual = "";
 
-    // Utilidades
     function mezclarArreglo(arreglo) {
         let mezclado = [...arreglo];
         for (let i = mezclado.length - 1; i > 0; i--) {
@@ -213,23 +304,21 @@
         return mezclado;
     }
 
-    // Lógica de inicio y validación
     function validarIngreso() {
         const nombre = document.getElementById("nombre").value.trim();
         const cedula = document.getElementById("cedula").value.trim();
         const errorElement = document.getElementById("error-registro");
 
         if (!nombre || !cedula) {
-            errorElement.innerText = "Por favor, completa ambos campos.";
+            errorElement.innerText = "Por favor, completa todos los campos.";
             errorElement.style.display = "block";
             return;
         }
 
-        // Simular base de datos con localStorage
         let registros = JSON.parse(localStorage.getItem("registroExamenPython")) || {};
 
         if (registros[cedula]) {
-            errorElement.innerText = `Acceso denegado: Ya presentaste el examen. Tu nota fue: ${registros[cedula].nota}`;
+            errorElement.innerText = `Acceso denegado: Ya presentaste el examen. Tu nota registrada es: ${registros[cedula].nota}`;
             errorElement.style.display = "block";
             return;
         }
@@ -239,12 +328,9 @@
     }
 
     function iniciarExamen() {
-        // Seleccionar 15 preguntas al azar del banco
         preguntasExamen = mezclarArreglo(bancoTotal).slice(0, 15);
-        
         document.getElementById("pantalla-registro").style.display = "none";
         document.getElementById("pantalla-examen").style.display = "block";
-        
         cargarPregunta();
     }
 
@@ -254,18 +340,15 @@
         
         const q = preguntasExamen[indiceActual];
         document.getElementById("indicador-progreso").innerText = `Pregunta ${indiceActual + 1} de 15`;
-        
-        // Renderizar pregunta
         document.getElementById("contenedor-pregunta").innerHTML = `<pre>${q.pregunta}</pre>`;
         
-        // Renderizar opciones mezcladas manteniendo el rastro de la correcta
         const opcionesConIndice = q.opciones.map((texto, i) => ({ texto, esCorrecta: i === q.correcta }));
         const opcionesMezcladas = mezclarArreglo(opcionesConIndice);
         
         const contenedorOpciones = document.getElementById("contenedor-opciones");
         contenedorOpciones.innerHTML = "";
         
-        opcionesMezcladas.forEach((opcion, i) => {
+        opcionesMezcladas.forEach((opcion) => {
             const btn = document.createElement("button");
             btn.className = "opcion-btn";
             btn.innerText = opcion.texto;
@@ -276,21 +359,14 @@
 
     function seleccionarOpcion(botonClickeado, esCorrecta) {
         respuestaSeleccionada = esCorrecta;
-        
-        // Quitar clase seleccionada a todos
         const botones = document.querySelectorAll(".opcion-btn");
         botones.forEach(btn => btn.classList.remove("seleccionada"));
-        
-        // Añadir clase al seleccionado
         botonClickeado.classList.add("seleccionada");
         document.getElementById("btn-siguiente").disabled = false;
     }
 
     function siguientePregunta() {
-        if (respuestaSeleccionada) {
-            puntaje++;
-        }
-        
+        if (respuestaSeleccionada) puntaje++;
         indiceActual++;
         
         if (indiceActual < 15 && indiceActual < preguntasExamen.length) {
@@ -307,16 +383,14 @@
         document.getElementById("pantalla-examen").style.display = "none";
         document.getElementById("pantalla-resultados").style.display = "block";
         
-        // Calcular nota (Escala de 1.0 a 5.0 basada en 15 preguntas)
         let totalPreguntas = Math.min(15, preguntasExamen.length);
         let notaCalculada = (puntaje / totalPreguntas) * 5.0;
         let notaFinal = Math.max(1.0, notaCalculada).toFixed(1);
         
         const nombre = document.getElementById("nombre").value;
-        document.getElementById("mensaje-final").innerHTML = `Gracias por completar la prueba, <strong>${nombre}</strong>.<br>Acertaste ${puntaje} de ${totalPreguntas} preguntas.`;
+        document.getElementById("mensaje-final").innerHTML = `Acertaste <strong>${puntaje}</strong> de ${totalPreguntas} preguntas, ${nombre}.`;
         document.getElementById("nota-final").innerText = notaFinal;
 
-        // Guardar en localStorage para bloquear futuros intentos locales
         let registros = JSON.parse(localStorage.getItem("registroExamenPython")) || {};
         registros[estudianteActual] = {
             nombre: nombre,
@@ -325,9 +399,7 @@
         };
         localStorage.setItem("registroExamenPython", JSON.stringify(registros));
 
-        // =================================================================
-        // INICIO DEL ENVÍO A GOOGLE SHEETS
-        // =================================================================
+        // ENVÍO A GOOGLE SHEETS
         let datosExamen = {
             nombre: nombre,
             cedula: estudianteActual,
@@ -335,22 +407,16 @@
             fecha: new Date().toLocaleString()
         };
 
-        // Reemplaza ESTA URL por la que te generó Google Apps Script
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzt3GIu4iYKufot_hk7qx235g9OWRWBLe3C8yOQlJVYtyAK8fkRl1TCtrXx83-8C0Lu/exec";
 
-        fetch(GOOGLE_SCRIPT_URL, {
-            method: "POST",
-            mode: "no-cors", // Ayuda a prevenir errores de seguridad en el navegador
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(datosExamen)
-        })
-        .then(response => console.log("Nota enviada a Google Sheets correctamente"))
-        .catch(error => console.error("Error al enviar la nota:", error));
-        // =================================================================
-        // FIN DEL ENVÍO A GOOGLE SHEETS
-        // =================================================================
+        if(GOOGLE_SCRIPT_URL !== "https://script.google.com/macros/s/AKfycbzt3GIu4iYKufot_hk7qx235g9OWRWBLe3C8yOQlJVYtyAK8fkRl1TCtrXx83-8C0Lu/exec") {
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(datosExamen)
+            }).then(() => console.log("Enviado")).catch(e => console.error(e));
+        }
     }
 </script>
 
