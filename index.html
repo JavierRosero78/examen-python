@@ -239,47 +239,210 @@
 
 <script>
     const bancoTotal = [
-        { pregunta: "Completa para abrir un archivo en modo lectura (da error si no existe):\n\nwith open('datos.txt', '___') as f:", opciones: ["r", "w", "a", "read"], correcta: 0 },
-        { pregunta: "Completa para abrir un archivo en modo escritura (sobrescribe si ya existe):\n\nwith open('mediciones.csv', '___') as f:", opciones: ["w", "write", "r", "a"], correcta: 0 },
-        { pregunta: "Completa para abrir un archivo en modo añadir (no borra lo anterior):\n\nwith open('sistema.log', '___') as archivo:", opciones: ["a", "w", "add", "r"], correcta: 0 },
-        { pregunta: "Completa para escribir una sola línea de texto en un archivo:\n\nwith open('log.txt', 'w') as f:\n    f._______('Inicio del sistema\\n')", opciones: ["write", "writelines", "append", "add"], correcta: 0 },
-        { pregunta: "Completa para escribir una lista entera de cadenas en un archivo:\n\ndatos = ['12.5\\n', '24.0\\n']\nwith open('datos.csv', 'w') as f:\n    f._________(datos)", opciones: ["writelines", "write", "write_all", "append"], correcta: 0 },
-        { pregunta: "Completa para leer todas las líneas de un archivo y guardarlas en una lista:\n\nwith open('mediciones.csv', 'r') as f:\n    contenido = f.________()", opciones: ["readlines", "read", "readline", "readlines()"], correcta: 0 },
-        { pregunta: "Completa para iterar directamente línea por línea sobre un archivo abierto:\n\nwith open('mediciones.csv', 'r') as f:\n    for linea ____ f:\n        print(linea)", opciones: ["in", "on", "from", "inside"], correcta: 0 },
-        { pregunta: "Completa para eliminar los espacios en blanco y saltos de línea al leer:\n\nfor linea in f:\n    print(linea._______())", opciones: ["strip()", "clean()", "remove()", "delete()"], correcta: 0 },
-        { pregunta: "Completa la estructura del gestor de contexto (abre y cierra seguro el archivo):\n\n________('archivo.txt', 'r') as f:", opciones: ["with open", "open with", "try open", "file open"], correcta: 0 },
-        { pregunta: "Completa para especificar la codificación al abrir un archivo:\n\nwith open('med.csv', 'w', _________) as f:", opciones: ["encoding='utf-8'", "charset='utf-8'", "code='utf-8'", "format='utf-8'"], correcta: 0 },
-        { pregunta: "Completa el símbolo necesario para forzar un salto de línea al escribir:\n\nf.write('Sensor 1: 3.3V___')", opciones: ["\\n", "/n", "\\t", "<br>"], correcta: 0 },
-        { pregunta: "Completa la asignación correcta al sumar a un contador:\n\ncontador _____ 1", opciones: ["+=", "++", "=+=", "+1"], correcta: 0 },
-        { pregunta: "Completa para limitar un número flotante a 2 decimales dentro de un f-string:\n\nf'Promedio: {promedio_____}'", opciones: [":.2f", ":.2", "%2f", ".2"], correcta: 0 },
-        { pregunta: "Completa para iniciar un bloque que podría generar un error:\n\n____:\n    resistencia = voltaje / corriente", opciones: ["try", "except", "test", "check"], correcta: 0 },
-        { pregunta: "Completa para atrapar una división por cero:\n\ntry:\n    y = z / x\nexcept ____________:\n    print('Error')", opciones: ["ZeroDivisionError", "MathError", "DivisionError", "ValueError"], correcta: 0 },
-        { pregunta: "Completa para atrapar un error al sumar texto con números:\n\ntry:\n    y = 'Hola' + 5\nexcept ____________:\n    print('Tipos incompatibles')", opciones: ["TypeError", "ValueError", "FormatError", "StringError"], correcta: 0 },
-        { pregunta: "Completa para atrapar una conversión fallida (ej. texto a número):\n\ntry:\n    edad = int('quince')\nexcept ____________:", opciones: ["ValueError", "TypeError", "ConvertError", "CastError"], correcta: 0 },
-        { pregunta: "Completa para atrapar el error de asignación (variable no declarada):\n\ntry:\n    resultado = corriente * voltaje\nexcept ____________:", opciones: ["NameError", "VariableError", "KeyError", "IndexError"], correcta: 0 },
-        { pregunta: "Completa para atrapar un acceso a una posición inexistente en una lista:\n\ntry:\n    dato = lista[7]\nexcept ____________:", opciones: ["IndexError", "RangeError", "KeyError", "ListError"], correcta: 0 },
-        { pregunta: "Completa para atrapar la búsqueda de una llave que no existe en un diccionario:\n\ntry:\n    pot = circuito['resistencia_falsa']\nexcept ____________:", opciones: ["KeyError", "IndexError", "DictError", "ValueError"], correcta: 0 },
-        { pregunta: "Completa para atrapar el error si la ruta de un archivo no existe:\n\ntry:\n    with open('inexistente.txt', 'r'):\nexcept ____________:", opciones: ["FileNotFoundError", "IOError", "FileError", "OpenError"], correcta: 0 },
-        { pregunta: "Completa para atrapar el uso de un método que el objeto no tiene:\n\ntry:\n    frecuencia.values()\nexcept ____________:", opciones: ["AttributeError", "MethodError", "FunctionError", "TypeError"], correcta: 0 },
-        { pregunta: "Completa para atrapar un error y guardarlo en una variable 'e':\n\nexcept ValueError ______:\n    print(f'Detalle: {e}')", opciones: ["as e", "in e", "to e", "var e"], correcta: 0 },
-        { pregunta: "Completa el bloque que se ejecuta SIEMPRE, haya error o no:\n\nexcept TypeError:\n    print('Error')\n_______:\n    print('Fin del programa')", opciones: ["finally", "else", "always", "except"], correcta: 0 },
-        { pregunta: "Completa el bloque que se ejecuta SOLO si NO hubo errores:\n\ntry:\n    x = 10 / 2\n_______:\n    print('Cálculo exitoso')", opciones: ["else", "finally", "except", "then"], correcta: 0 },
-        { pregunta: "Completa para saltar la iteración actual en un bucle si hay error:\n\nexcept ValueError:\n    ________", opciones: ["continue", "break", "pass", "next"], correcta: 0 },
-        { pregunta: "Completa para salir de un bucle 'while True' si el dato se ingresó bien:\n\nwhile True:\n    try:\n        edad = int(input())\n        _______", opciones: ["break", "continue", "exit", "stop"], correcta: 0 },
-        { pregunta: "Completa la palabra reservada para iniciar la creación de una función:\n\n_____ calcular_potencia():", opciones: ["def", "function", "fun", "define"], correcta: 0 },
-        { pregunta: "Completa el nombre de la función siguiendo la convención correcta:\n\ndef ____________():", opciones: ["saludar_estudiante", "Saludar_Estudiante", "saludarEstudiante", "saludar estudiante"], correcta: 0 },
-        { pregunta: "Completa el símbolo obligatorio al final de los paréntesis de una definición:\n\ndef iniciar()__", opciones: [":", ";", "{", "->"], correcta: 0 },
-        { pregunta: "¿Qué define qué bloque de código pertenece al interior de una función en Python?", opciones: ["La indentación (espacios)", "Los paréntesis", "Las llaves {}", "Los corchetes []"], correcta: 0 },
-        { pregunta: "Completa para llamar (ejecutar) correctamente a la función:\n\ndef iniciar():\n    print('Hola')\n\n________", opciones: ["iniciar()", "call iniciar", "run iniciar()", "iniciar"], correcta: 0 },
-        { pregunta: "Completa para usar un argumento por defecto:\n\ndef calcular(voltaje, _________):\n    pass", opciones: ["frecuencia=60", "frecuencia", "frecuencia: 60", "frecuencia==60"], correcta: 0 },
-        { pregunta: "Completa el uso de un Keyword Argument (asignación explícita por nombre):\n\ncalcular_potencia(_________=5, voltaje=220)", opciones: ["corriente", "int corriente", "val corriente", "i"], correcta: 0 },
-        { pregunta: "Completa para finalizar la función y devolver un dato procesado:\n\n________ resultado", opciones: ["return", "output", "yield", "send"], correcta: 0 },
-        { pregunta: "Completa la sintaxis para devolver MÚLTIPLES valores empaquetados:\n\nreturn _________", opciones: ["voltaje, potencia", "voltaje and potencia", "[voltaje, potencia]", "voltaje; potencia"], correcta: 0 },
-        { pregunta: "Completa la sintaxis para desempaquetar múltiples retornos respetando el orden:\n\n________ = analizar_circuito(10, 2)", opciones: ["v_result, p_result", "v_result; p_result", "[v, p]", "v_result and p_result"], correcta: 0 },
-        { pregunta: "¿Cuál es el ciclo de vida de una variable LOCAL (creada dentro de una función)?", opciones: ["Deja de existir cuando la función termina.", "Existe durante toda la ejecución del script.", "No se puede borrar jamás.", "Sobrescribe todas las demás variables."], correcta: 0 },
-        { pregunta: "¿Cuál es la característica principal de una variable GLOBAL (creada fuera de las funciones)?", opciones: ["Puede ser leída por cualquier función del programa.", "El programa principal NO puede acceder a ella.", "Provoca un NameError siempre.", "Requiere usar with open para leerla."], correcta: 0 },
-        { pregunta: "Completa con el caracter correcto para indicar que se evalúa un f-string:\n\nprint(__'Cálculo exitoso: {resistencia}')", opciones: ["f", "format", "s", "str"], correcta: 0 }
-    ];
+    // Preguntas 1 - 10 (Conjuntos y Conceptos Básicos de Funciones)
+    { 
+        pregunta: "Si tenemos el conjunto A = {1, 2, 3} y el conjunto B = {3, 4, 5}, ¿cuál es el conjunto resultante de la operación de unión A U B?", 
+        opciones: [
+            "{1, 2, 3, 4, 5}", 
+            "{1, 2, 4, 5, 6}", 
+            "{1, 2, 3, 3, 4}", 
+            "{3, 4, 5, 6, 7}"
+        ], 
+        correcta: 0 
+    },
+    { 
+        pregunta: "Dado el conjunto universal U = {1, 2, 3, 4, 5, 6}, y los conjuntos A = {2, 4, 6} y B = {1, 2, 3}. ¿Cuál es el resultado de la diferencia A - B?", 
+        opciones: [
+            "{4, 6}", 
+            "{2}", 
+            "{1, 3}", 
+            "{1, 2, 3}"
+        ], 
+        correcta: 0 
+    },
+    { 
+        pregunta: "¿Cómo se define conceptualmente la diferencia simétrica entre dos conjuntos (A Δ B)?", 
+        opciones: [
+            "Elementos que pertenecen a A o a B, pero no a ambos al mismo tiempo.", 
+            "Elementos que pertenecen a B pero que no pertenecen a A", 
+            "Elementos del conjunto universal que no están en A ni están en B.", 
+            "Elementos que pertenecen a A pero que no pertenecen a B"
+        ], 
+        correcta: 0 
+    },
+    { 
+        pregunta: "Si el conjunto universal es U = {a, b, c, d, e} y se tiene el conjunto X = {a, c, e}, ¿cuál es el complemento de X (X')?", 
+        opciones: [
+            "{b, d}", 
+            "{a, e}", 
+            "{a, b}", 
+            "{c, d}"
+        ], 
+        correcta: 0 
+    },
+    { 
+        pregunta: "Dados los conjuntos A = {2, 4, 6, 8, 10} y B = {1, 2, 3, 4, 5}, ¿cuál es el conjunto resultante de la operación de unión A ∪ B?", 
+        opciones: [
+            "{1, 2, 3, 4, 5, 6, 8, 10}", 
+            "{6, 8, 10}", 
+            "{2, 4}", 
+            "{1, 2, 3, 4, 5}"
+        ], 
+        correcta: 0 
+    },
+    { 
+        pregunta: "¿Cuál es la condición fundamental entre un Dominio (A) y un Codominio (B) para que una relación sea considerada una función válida?", 
+        opciones: [
+            "Cada elemento de A se asigna a exactamente un elemento del conjunto B.", 
+            "Ningún elemento de A se puede relacionar con los elementos del conjunto B.", 
+            "Cada elemento de A se asigna a varios elementos del conjunto B.", 
+            "Solo algunos elementos de A se asignan a elementos del conjunto B."
+        ], 
+        correcta: 0 
+    },
+    { 
+        pregunta: "En el contexto del conjunto de llegada de una función, ¿cuál es la diferencia principal entre el codominio y el rango (imagen)?", 
+        opciones: [
+            "El codominio son las salidas posibles y el rango son las que efectivamente resultan.", 
+            "El codominio es el conjunto de partida y el rango es el de llegada.", 
+            "El rango es el conjunto de partida y el codominio es el de llegada.", 
+            "El rango son las salidas posibles y el codominio son las que efectivamente resultan."
+        ], 
+        correcta: 0 
+    },
+    { 
+        pregunta: "¿Qué característica matemática define estrictamente a una función inyectiva (uno a uno)?", 
+        opciones: [
+            "A elementos distintos del dominio corresponden resultados (imágenes) distintos.", 
+            "Todos los elementos del codominio tienen obligatoriamente una imagen asignada.", 
+            "Todos los elementos del dominio comparten una única imagen en el codominio.", 
+            "A elementos idénticos del dominio corresponden resultados (imágenes) diferentes."
+        ], 
+        correcta: 0 
+    },
+    { 
+        pregunta: "De acuerdo con la clasificación de funciones, ¿cuándo se considera que una función es sobreyectiva?", 
+        opciones: [
+            "Cuando todos los elementos del codominio son imagen de al menos un elemento del dominio.", 
+            "Cuando existen varios elementos del codominio que se quedan sin ser asignados.", 
+            "Cuando un solo elemento del codominio es imagen de todos los elementos del dominio.", 
+            "Cuando ningún elemento del codominio es imagen de los elementos del dominio."
+        ], 
+        correcta: 0 
+    },
+    { 
+        pregunta: "La función f(x) = x² + 1 con dominio {-1, 0, 1, 2} NO es inyectiva porque:", 
+        opciones: [
+            "Las entradas x = -1 y x = 1 producen exactamente la misma salida y = 2.", 
+            "Faltan números negativos en el conjunto del codominio.", 
+            "El rango de la función matemática no abarca a todos los números enteros.", 
+            "Las entradas x = 0 y x = 2 producen resultados que son números fraccionarios."
+        ], 
+        correcta: 0 
+    },
+
+    // Preguntas 11 - 20 (Rango, Álgebra de Funciones e Inversas)
+    { 
+        pregunta: "Al realizar el despeje para calcular el rango de la función racional f(x) = 2x / (x - 1), se obtiene la expresión x = y / (y - 2). Según esto, ¿cuál es el rango de la función?", 
+        opciones: [
+            "Todos los números reales excluyendo el número 2.", 
+            "Todos los números reales sin ninguna excepción.", 
+            "Todos los números reales excluyendo el número 0.", 
+            "Todos los números reales excluyendo el número 1."
+        ], 
+        correcta: 0 
+    },
+    { 
+        pregunta: "Para calcular el rango de la función cuadrática f(x) = x² - 4x + 7 utilizando el discriminante, se plantea la inecuación b² - 4ac ≥ 0. ¿Qué significa esta condición?", 
+        opciones: [
+            "Garantiza que exista al menos un número real x para producir un valor y.", 
+            "Garantiza que la parábola cruzará el eje horizontal en múltiples puntos.", 
+            "Garantiza que la función cuadrática solo tendrá raíces imaginarias.", 
+            "Garantiza que la ecuación cuadrática pierda su vértice geométrico."
+        ], 
+        correcta: 0 
+    },
+    { 
+        pregunta: "Dadas las funciones f(x) = 2x + 3 y g(x) = x² - 1, ¿cuál es el resultado de evaluar el producto de las funciones (f · g)(2)?", 
+        opciones: [
+            "21", 
+            "15", 
+            "28", 
+            "10"
+        ], 
+        correcta: 0 
+    },
+    { 
+        pregunta: "Dadas las funciones lineales f(x) = 3x y g(x) = x + 5, ¿cuál es el resultado algebraico correcto de la composición (f ∘ g)(x)?", 
+        opciones: [
+            "3x + 15", 
+            "x + 15", 
+            "4x + 5", 
+            "3x + 5"
+        ], 
+        correcta: 0 
+    },
+    { 
+        pregunta: "Basado en el cálculo de composiciones de funciones, ¿qué se puede concluir matemáticamente al comparar (f ∘ g)(x) con (g ∘ f)(x)?", 
+        opciones: [
+            "Que la composición de funciones no es una operación conmutativa.", 
+            "Que la composición de funciones anula el dominio original.", 
+            "Que la composición de funciones es una operación conmutativa.", 
+            "Que la composición de funciones es siempre asociativa."
+        ], 
+        correcta: 0 
+    },
+    { 
+        pregunta: "Para poder afirmar que una función matemática posee una función inversa válida y determinista, ¿qué propiedad esencial debe cumplir?", 
+        opciones: [
+            "Debe ser una función estrictamente biyectiva.", 
+            "Debe ser una función exclusivamente sobreyectiva.", 
+            "Debe ser una función exclusivamente inyectiva.", 
+            "Debe ser una función estrictamente polinómica."
+        ], 
+        correcta: 0 
+    },
+    { 
+        pregunta: "¿Cuál es el propósito o la acción fundamental que realiza una función inversa f⁻¹(x)?", 
+        opciones: [
+            "Revertir el mapeo original para devolver el valor a su estado inicial.", 
+            "Convertir todos los resultados positivos a su forma negativa.", 
+            "Multiplicar los valores del conjunto de partida por los de llegada.", 
+            "Duplicar el valor de la salida original de la función."
+        ], 
+        correcta: 0 
+    },
+    { 
+        pregunta: "Aplicando los pasos de despeje algebraico, ¿cuál es la función inversa correspondiente a la función lineal f(x) = 5x - 3?", 
+        opciones: [
+            "f⁻¹(x) = (x + 3) / 5", 
+            "f⁻¹(x) = (x + 5) / 3", 
+            "f⁻¹(x) = (x - 3) / 5", 
+            "f⁻¹(x) = (x - 5) / 3"
+        ], 
+        correcta: 0 
+    },
+    { 
+        pregunta: "Durante el proceso de hallar la inversa de la función cúbica f(x) = x³ - 8, se llega a la expresión y + 8 = x³. ¿Qué operación se debe aplicar para terminar de despejar 'x'?", 
+        opciones: [
+            "Aplicar raíz cúbica a ambos lados de la ecuación.", 
+            "Multiplicar por la constante tres a ambos lados.", 
+            "Elevar al cuadrado ambos lados de la ecuación.", 
+            "Aplicar logaritmos naturales a ambos lados."
+        ], 
+        correcta: 0 
+    },
+    { 
+        pregunta: "En el análisis de restricciones de conjuntos, ¿cuál es el propósito principal de excluir del dominio aquellos valores que causan divisiones por cero en una función racional?", 
+        opciones: [
+            "Garantizar que la función sea biyectiva y por lo tanto tenga inversa formal.", 
+            "Aumentar artificialmente el número de elementos contenidos dentro del rango.", 
+            "Facilitar el proceso de factorización de los términos en el numerador.", 
+            "Convertir la función racional compleja en una función de tipo lineal."
+        ], 
+        correcta: 0 
+    }
+];
 
     let preguntasExamen = [];
     let indiceActual = 0;
