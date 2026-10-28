@@ -238,207 +238,155 @@
 </div>
 
 <script>
-    const bancoTotal = [
-    // Preguntas 1 - 10 (Conjuntos y Conceptos Básicos de Funciones)
+ const bancoTotal = [
+    // Preguntas 1 - 15 (Algoritmos de Lectura, Jerarquía Visual y Documentación de Código)
     { 
-        pregunta: "Si tenemos el conjunto A = {1, 2, 3} y el conjunto B = {3, 4, 5}, ¿cuál es el conjunto resultante de la operación de unión A U B?", 
+        pregunta: "¿Cuál es el objetivo principal al escribir textos para páginas web?", 
         opciones: [
-            "{1, 2, 3, 4, 5}", 
-            "{1, 2, 4, 5, 6}", 
-            "{1, 2, 3, 3, 4}", 
-            "{3, 4, 5, 6, 7}"
+            "Optimizar la información y quitar lo que no sirve para que el mensaje principal se entienda rápido.", 
+            "Escribir textos muy largos y detallados como si fueran para una tarea de la universidad.", 
+            "Llenar la pantalla con muchas palabras difíciles para que el texto se vea más importante.", 
+            "Hacer que la persona pase mucho tiempo leyendo cada palabra con calma."
         ], 
         correcta: 0 
     },
     { 
-        pregunta: "Dado el conjunto universal U = {1, 2, 3, 4, 5, 6}, y los conjuntos A = {2, 4, 6} y B = {1, 2, 3}. ¿Cuál es el resultado de la diferencia A - B?", 
+        pregunta: "¿Para qué tipo de páginas es ideal usar el 'Patrón F' de lectura?", 
         opciones: [
-            "{4, 6}", 
-            "{2}", 
-            "{1, 3}", 
-            "{1, 2, 3}"
+            "Para blogs y páginas de resultados de búsqueda.", 
+            "Para páginas de ventas muy simples que solo tienen un botón y una foto.", 
+            "Únicamente para el diseño de logotipos y menús pequeños.", 
+            "Para formularios cortos donde solo se pide el correo y la contraseña."
         ], 
         correcta: 0 
     },
     { 
-        pregunta: "¿Cómo se define conceptualmente la diferencia simétrica entre dos conjuntos (A Δ B)?", 
+        pregunta: "¿Cuál es la principal ventaja de usar el 'Patrón Z' en una página web?", 
         opciones: [
-            "Elementos que pertenecen a A o a B, pero no a ambos al mismo tiempo.", 
-            "Elementos que pertenecen a B pero que no pertenecen a A", 
-            "Elementos del conjunto universal que no están en A ni están en B.", 
-            "Elementos que pertenecen a A pero que no pertenecen a B"
+            "Prioriza la simplicidad y lleva la mirada del usuario directo al botón de acción principal (CTA).", 
+            "Obliga a las personas a leer textos enormes de arriba hacia abajo sin parar.", 
+            "Es la mejor opción para escribir artículos de noticias muy largos.", 
+            "Oculta los botones importantes para que el usuario tenga que buscarlos por toda la pantalla."
         ], 
         correcta: 0 
     },
     { 
-        pregunta: "Si el conjunto universal es U = {a, b, c, d, e} y se tiene el conjunto X = {a, c, e}, ¿cuál es el complemento de X (X')?", 
+        pregunta: "Según el método de la 'Pirámide Invertida', ¿qué información debe ir en la primera línea de un texto?", 
         opciones: [
-            "{b, d}", 
-            "{a, e}", 
-            "{a, b}", 
-            "{c, d}"
+            "La conclusión, el dato más importante o la instrucción principal.", 
+            "La historia completa y los detalles menos importantes para dar contexto.", 
+            "Un saludo largo explicando cómo ha crecido la empresa en los últimos meses.", 
+            "Los argumentos secundarios y las explicaciones de apoyo."
         ], 
         correcta: 0 
     },
     { 
-        pregunta: "Dados los conjuntos A = {2, 4, 6, 8, 10} y B = {1, 2, 3, 4, 5}, ¿cuál es el conjunto resultante de la operación de unión A ∪ B?", 
+        pregunta: "En el diseño visual, ¿para qué sirve dejar 'espacio en blanco' en una pantalla?", 
         opciones: [
-            "{1, 2, 3, 4, 5, 6, 8, 10}", 
-            "{6, 8, 10}", 
-            "{2, 4}", 
-            "{1, 2, 3, 4, 5}"
+            "Para enmarcar, resaltar lo importante, aislar elementos y dar calma visual en pantallas limpias.", 
+            "Para demostrar que faltó información por escribir en la página.", 
+            "Para hacer que las letras se vean mucho más pequeñas y pegadas entre sí.", 
+            "Para confundir al usuario y que no sepa dónde hacer clic."
         ], 
         correcta: 0 
     },
     { 
-        pregunta: "¿Cuál es la condición fundamental entre un Dominio (A) y un Codominio (B) para que una relación sea considerada una función válida?", 
+        pregunta: "En la jerarquía visual, ¿qué logramos al poner elementos muy cerca unos de otros (proximidad)?", 
         opciones: [
-            "Cada elemento de A se asigna a exactamente un elemento del conjunto B.", 
-            "Ningún elemento de A se puede relacionar con los elementos del conjunto B.", 
-            "Cada elemento de A se asigna a varios elementos del conjunto B.", 
-            "Solo algunos elementos de A se asignan a elementos del conjunto B."
+            "Que los elementos cercanos parezcan estar agrupados o relacionados entre sí.", 
+            "Que los colores brillantes se vean mucho más apagados y oscuros.", 
+            "Que las imágenes planas adquieran una textura elaborada.", 
+            "Que el texto cambie automáticamente de tamaño grande a pequeño."
         ], 
         correcta: 0 
     },
     { 
-        pregunta: "En el contexto del conjunto de llegada de una función, ¿cuál es la diferencia principal entre el codominio y el rango (imagen)?", 
+        pregunta: "¿Cómo debe ser un buen mensaje de error para el usuario?", 
         opciones: [
-            "El codominio son las salidas posibles y el rango son las que efectivamente resultan.", 
-            "El codominio es el conjunto de partida y el rango es el de llegada.", 
-            "El rango es el conjunto de partida y el codominio es el de llegada.", 
-            "El rango son las salidas posibles y el codominio son las que efectivamente resultan."
+            "Claro, con tono humano (sin culpar al usuario) y que ofrezca una solución o paso a seguir.", 
+            "Con códigos técnicos y números de programación para que se vea profesional.", 
+            "Seco y culpando a la persona por haber presionado mal un botón.", 
+            "Confuso y sin botones de salida para que el usuario cierre la página rápido."
         ], 
         correcta: 0 
     },
     { 
-        pregunta: "¿Qué característica matemática define estrictamente a una función inyectiva (uno a uno)?", 
+        pregunta: "Cuando un usuario está a punto de hacer una 'acción irreversible' (como cancelar su plan), ¿cómo deben ser los textos de los botones?", 
         opciones: [
-            "A elementos distintos del dominio corresponden resultados (imágenes) distintos.", 
-            "Todos los elementos del codominio tienen obligatoriamente una imagen asignada.", 
-            "Todos los elementos del dominio comparten una única imagen en el codominio.", 
-            "A elementos idénticos del dominio corresponden resultados (imágenes) diferentes."
+            "Muy claros y sin confusiones (por ejemplo: 'Volver' y 'Sí, cancelar') para evitar errores.", 
+            "Confusos (como poner 'Cancelar' y 'Confirmar' juntos) para que el usuario dude.", 
+            "Escondidos al final de la página con letras muy pequeñas que casi no se lean.", 
+            "Escritos en otro idioma para que el usuario no pueda cancelar su cuenta fácilmente."
         ], 
         correcta: 0 
     },
     { 
-        pregunta: "De acuerdo con la clasificación de funciones, ¿cuándo se considera que una función es sobreyectiva?", 
+        pregunta: "¿Qué es Markdown?", 
         opciones: [
-            "Cuando todos los elementos del codominio son imagen de al menos un elemento del dominio.", 
-            "Cuando existen varios elementos del codominio que se quedan sin ser asignados.", 
-            "Cuando un solo elemento del codominio es imagen de todos los elementos del dominio.", 
-            "Cuando ningún elemento del codominio es imagen de los elementos del dominio."
+            "Una forma sencilla de dar formato a textos usando símbolos básicos, pudiendo leerse fácilmente en texto simple sin códigos pesados.", 
+            "Un programa complicado de diseño gráfico exclusivo para editar fotografías.", 
+            "Un lenguaje lleno de etiquetas ocultas y difíciles que no se puede leer a simple vista.", 
+            "Un procesador de textos tradicional exactamente igual a Microsoft Word."
         ], 
         correcta: 0 
     },
     { 
-        pregunta: "La función f(x) = x² + 1 con dominio {-1, 0, 1, 2} NO es inyectiva porque:", 
+        pregunta: "En Markdown, ¿qué símbolo se usa para crear títulos y cómo debe usarse el título principal (H1)?", 
         opciones: [
-            "Las entradas x = -1 y x = 1 producen exactamente la misma salida y = 2.", 
-            "Faltan números negativos en el conjunto del codominio.", 
-            "El rango de la función matemática no abarca a todos los números enteros.", 
-            "Las entradas x = 0 y x = 2 producen resultados que son números fraccionarios."
-        ], 
-        correcta: 0 
-    },
-
-    // Preguntas 11 - 20 (Rango, Álgebra de Funciones e Inversas)
-    { 
-        pregunta: "Al realizar el despeje para calcular el rango de la función racional f(x) = 2x / (x - 1), se obtiene la expresión x = y / (y - 2). Según esto, ¿cuál es el rango de la función?", 
-        opciones: [
-            "Todos los números reales excluyendo el número 2.", 
-            "Todos los números reales sin ninguna excepción.", 
-            "Todos los números reales excluyendo el número 0.", 
-            "Todos los números reales excluyendo el número 1."
+            "Se usa el símbolo # y solo debe haber un título principal (# H1) por documento, sin saltarse niveles.", 
+            "Se usa el símbolo * y se pueden poner todos los títulos principales que uno quiera.", 
+            "Se usa el símbolo > al principio de cada línea para hacer la letra más grande.", 
+            "Se usan tres guiones --- antes de cada palabra importante."
         ], 
         correcta: 0 
     },
     { 
-        pregunta: "Para calcular el rango de la función cuadrática f(x) = x² - 4x + 7 utilizando el discriminante, se plantea la inecuación b² - 4ac ≥ 0. ¿Qué significa esta condición?", 
+        pregunta: "Si quieres poner una palabra en negrita en Markdown para resaltar un concepto clave, ¿cómo debes escribirla?", 
         opciones: [
-            "Garantiza que exista al menos un número real x para producir un valor y.", 
-            "Garantiza que la parábola cruzará el eje horizontal en múltiples puntos.", 
-            "Garantiza que la función cuadrática solo tendrá raíces imaginarias.", 
-            "Garantiza que la ecuación cuadrática pierda su vértice geométrico."
+            "Rodeando la palabra con dos asteriscos, así: **texto**.", 
+            "Rodeando la palabra con un solo asterisco, así: *texto*.", 
+            "Poniendo dos signos de tilde a los lados, así: ~~texto~~.", 
+            "Poniendo el símbolo de número antes de la palabra, así: # texto."
         ], 
         correcta: 0 
     },
     { 
-        pregunta: "Dadas las funciones f(x) = 2x + 3 y g(x) = x² - 1, ¿cuál es el resultado de evaluar el producto de las funciones (f · g)(2)?", 
+        pregunta: "¿Cuándo se recomienda usar listas ordenadas (con números: 1., 2.) en lugar de viñetas normales?", 
         opciones: [
-            "21", 
-            "15", 
-            "28", 
-            "10"
+            "Cuando se explican pasos estrictos que deben seguirse en orden, como en un tutorial o proceso.", 
+            "Cuando se nombran características sueltas donde el orden no importa para nada.", 
+            "Únicamente cuando queremos resaltar palabras en otro idioma.", 
+            "Cuando queremos hacer una tabla comparativa con muchas columnas."
         ], 
         correcta: 0 
     },
     { 
-        pregunta: "Dadas las funciones lineales f(x) = 3x y g(x) = x + 5, ¿cuál es el resultado algebraico correcto de la composición (f ∘ g)(x)?", 
+        pregunta: "¿Cuál es la diferencia en Markdown entre escribir un enlace y poner una imagen?", 
         opciones: [
-            "3x + 15", 
-            "x + 15", 
-            "4x + 5", 
-            "3x + 5"
+            "La imagen usa exactamente la misma forma [Texto](URL), pero lleva un signo de exclamación al principio: ![Texto](URL).", 
+            "Las imágenes se ponen con tres comillas invertidas y los enlaces con guiones.", 
+            "Los enlaces llevan el símbolo # y las imágenes llevan el símbolo >.", 
+            "No hay ninguna diferencia, ambos se escriben exactamente igual."
         ], 
         correcta: 0 
     },
     { 
-        pregunta: "Basado en el cálculo de composiciones de funciones, ¿qué se puede concluir matemáticamente al comparar (f ∘ g)(x) con (g ∘ f)(x)?", 
+        pregunta: "Al documentar código en Markdown, ¿para qué se usan tres comillas invertidas seguidas (```)?", 
         opciones: [
-            "Que la composición de funciones no es una operación conmutativa.", 
-            "Que la composición de funciones anula el dominio original.", 
-            "Que la composición de funciones es una operación conmutativa.", 
-            "Que la composición de funciones es siempre asociativa."
+            "Para poner bloques de código de varias líneas (scripts completos) e indicar el lenguaje de programación.", 
+            "Para tachar palabras que tienen errores de ortografía en un párrafo.", 
+            "Para crear una línea horizontal que divida la página en dos partes.", 
+            "Para hacer que un texto normal se convierta en una cita en bloque."
         ], 
         correcta: 0 
     },
     { 
-        pregunta: "Para poder afirmar que una función matemática posee una función inversa válida y determinista, ¿qué propiedad esencial debe cumplir?", 
+        pregunta: "Según las buenas prácticas para escribir comentarios dentro del código, ¿qué es lo que debe explicar un buen comentario?", 
         opciones: [
-            "Debe ser una función estrictamente biyectiva.", 
-            "Debe ser una función exclusivamente sobreyectiva.", 
-            "Debe ser una función exclusivamente inyectiva.", 
-            "Debe ser una función estrictamente polinómica."
-        ], 
-        correcta: 0 
-    },
-    { 
-        pregunta: "¿Cuál es el propósito o la acción fundamental que realiza una función inversa f⁻¹(x)?", 
-        opciones: [
-            "Revertir el mapeo original para devolver el valor a su estado inicial.", 
-            "Convertir todos los resultados positivos a su forma negativa.", 
-            "Multiplicar los valores del conjunto de partida por los de llegada.", 
-            "Duplicar el valor de la salida original de la función."
-        ], 
-        correcta: 0 
-    },
-    { 
-        pregunta: "Aplicando los pasos de despeje algebraico, ¿cuál es la función inversa correspondiente a la función lineal f(x) = 5x - 3?", 
-        opciones: [
-            "f⁻¹(x) = (x + 3) / 5", 
-            "f⁻¹(x) = (x + 5) / 3", 
-            "f⁻¹(x) = (x - 3) / 5", 
-            "f⁻¹(x) = (x - 5) / 3"
-        ], 
-        correcta: 0 
-    },
-    { 
-        pregunta: "Durante el proceso de hallar la inversa de la función cúbica f(x) = x³ - 8, se llega a la expresión y + 8 = x³. ¿Qué operación se debe aplicar para terminar de despejar 'x'?", 
-        opciones: [
-            "Aplicar raíz cúbica a ambos lados de la ecuación.", 
-            "Multiplicar por la constante tres a ambos lados.", 
-            "Elevar al cuadrado ambos lados de la ecuación.", 
-            "Aplicar logaritmos naturales a ambos lados."
-        ], 
-        correcta: 0 
-    },
-    { 
-        pregunta: "En el análisis de restricciones de conjuntos, ¿cuál es el propósito principal de excluir del dominio aquellos valores que causan divisiones por cero en una función racional?", 
-        opciones: [
-            "Garantizar que la función sea biyectiva y por lo tanto tenga inversa formal.", 
-            "Aumentar artificialmente el número de elementos contenidos dentro del rango.", 
-            "Facilitar el proceso de factorización de los términos en el numerador.", 
-            "Convertir la función racional compleja en una función de tipo lineal."
+            "Debe explicar el 'porqué' se tomó una decisión en el código, y no repetir lo que ya es obvio a simple vista.", 
+            "Debe explicar paso a paso cosas obvias, como poner # suma 1 al contador.", 
+            "Debe repetir exactamente con palabras el nombre de la función que está abajo.", 
+            "Debe contar quién programó el archivo y en qué fecha lo hizo en cada línea."
         ], 
         correcta: 0 
     }
